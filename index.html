@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق دفعتنا</title>
+
+    <!-- استيراد المكتبات -->
+    <link rel="stylesheet" href="libs/sweetalert2.min.css">
+    <link rel="stylesheet" href="libs/animate.min.css">
+    <link rel="stylesheet" href="fonts/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="libs/sweetalert2/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="fonts/cairo/cairo.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- شاشة التحميل -->
+    <div id="loader" class="loader">
+        <div class="spinner animate__animated animate__bounceIn">
+            <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <p class="animate__animated animate__fadeIn animate__delay-1s" id="welcome-text">أهلاً بك في تطبيق دفعتنا!</p>
+    </div>
+
+    <!-- الصفحة الرئيسية -->
+    <div id="home" class="page active animate__animated animate__fadeIn">
+        <h1>مرحبا بكم في تطبيق دفعتنا <i class="fa-solid fa-graduation-cap"></i></h1>
+
+        <!-- شبكة الكروت -->
+        <div class="grid-container">
+            <div class="card animate__animated animate__zoomIn" onclick="showLectures()">
+                <i class="fa-solid fa-file-pdf"></i>
+                <p>المحاضرات</p>
+            </div>
+            <div class="card animate__animated animate__zoomIn" onclick="showPage('schedule')">
+                <i class="fas fa-calendar-alt"></i>
+                <p>الجدول</p>
+            </div>
+            <div class="card animate__animated animate__zoomIn" onclick="showPage('videos')">
+                <i class="fas fa-video"></i>
+                <p>فيديوهات الشرح</p>
+            </div>
+            <div class="card animate__animated animate__zoomIn" onclick="showPage('links')">
+                <i class="fas fa-link"></i>
+                <p>روابط الجروبات</p>
+            </div>
+            <div class="card animate__animated animate__zoomIn" onclick="showPage('notes')">
+                <i class="fa-solid fa-pencil"></i>
+                <p>الملاحظات</p>
+            </div>
+            <div class="card animate__animated animate__zoomIn" onclick="showPage('tasks')">
+                <i class="fas fa-tasks"></i>
+                <p>المهام</p>
+            </div>
+            <div class="card animate__animated animate__zoomIn" onclick="showPage('settings')">
+                <i class="fas fa-cog"></i>
+                <p>الإعدادات</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- قسم المحاضرات -->
+    <div id="lectures" class="page animate__animated animate__fadeIn" style="display:none;">
+        <div class="back-button" onclick="showPage('home')"><i class="fas fa-arrow-right"></i></div>
+        <h2>المحاضرات</h2>
+        <iframe src="PDF.html" width="100%" height="600px" style="border:none;"></iframe>
+    </div>
+
+    <!-- صفحة الجدول الدراسي -->
+    <div id="schedule" class="page animate__animated animate__fadeIn" style="display:none;">
+        <div class="back-button" onclick="showPage('home')"><i class="fas fa-arrow-right"></i></div>
+        <h2>الجدول الدراسي</h2>
+        <p>هذه الصفحة تمكنك من تنظيم جدولك الأسبوعي بفعالية.</p>
+        <!-- هنا يمكنك إضافة المحتوى لاحقًا -->
+    </div>
+
+    <!-- قسم فيديوهات الشرح -->
+    <div id="videos" class="page animate__animated animate__fadeIn" style="display:none;">
+        <div class="back-button" onclick="showPage('home')"><i class="fas fa-arrow-right"></i></div>
+        <h2>فيديوهات الشرح</h2>
+        <p>يمكنك إضافة فيديوهات الشرح هنا.</p>
+        <!-- هنا يمكنك إضافة المحتوى لاحقًا -->
+    </div>
+
+    <!-- قسم روابط الجروبات -->
+    <div id="links" class="page animate__animated animate__fadeIn" style="display:none;">
+        <div class="back-button" onclick="showPage('home')"><i class="fas fa-arrow-right"></i></div>
+        <h2>روابط الجروبات</h2>
+        <p>قم بإضافة روابط الجروبات هنا.</p>
+        <!-- هنا يمكنك إضافة المحتوى لاحقًا -->
+    </div>
+
+    <!-- قسم الملاحظات -->
+    <div id="notes" class="page animate__animated animate__fadeIn" style="display:none;">
+        <div class="back-button" onclick="showPage('home')"><i class="fas fa-arrow-right"></i></div>
+        <h2>الملاحظات</h2>
+        <p>قم بإضافة الملاحظات هنا.</p>
+
+    </div>
+
+    <!-- قسم المهام -->
+    <div id="tasks" class="page animate__animated animate__fadeIn" style="display:none;">
+        <div class="back-button" onclick="showPage('home')"><i class="fas fa-arrow-right"></i></div>
+        <h2>المهام</h2>
+        <p>قم بإضافة المهام هنا.</p>
+
+    </div>
+
+    <!-- قسم الإعدادات -->
+    <div id="settings" class="page animate__animated animate__fadeIn" style="display:none;">
+        <div class="back-button" onclick="showPage('home')"><i class="fas fa-arrow-right"></i></div>
+        <h2>الإعدادات</h2>
+        <p>قم بتعديل الإعدادات هنا.</p>
+    </div>
+
+    <!-- شريط التنقل السفلي -->
+    <div class="bottom-navigation">
+        <a href="#" onclick="showPage('home')"><i class="fas fa-home"></i></a>
+        <a href="#" onclick="showLectures()"><i class="fa-solid fa-file-pdf"></i></a>
+        <a href="#" onclick="showPage('videos')"><i class="fas fa-video"></i></a>
+        <a href="#" onclick="showPage('links')"><i class="fas fa-link"></i></a>
+        <a href="#" onclick="showPage('settings')"><i class="fas fa-cog"></i></a>
+    </div>
+
+    <!-- تحميل ملف السكربت -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="libs/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="node_modules/sortablejs/Sortable.min.js"></script>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

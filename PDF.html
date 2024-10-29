@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ملفات المحاضرات - PDF</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+
+        <h1>ملفات المحاضرات <i class="fa-solid fa-file-pdf"></i></h1>
+        <p>تجد هنا جميع الملفات بصيغة PDF المتعلقة بالمحاضرات.</p>
+
+        <!-- ------------------------------------------------------| قائمة المواد الدراسية |------------------------------------------------------ -->
+        <ul class="subject-list">
+
+            <!-- ------------------------------------------------------| مادة الرياضيات |------------------------------------------------------ -->
+            <li class="subject-item">
+                <div class="subject-link" onclick="toggleList(this, 'outer')">
+                    مادة الرياضيات <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                </div>
+
+                <!-- ----------- قائمة الدكاترة في مادة الرياضيات ----------- -->
+                <ul class="doctor-list">
+                    <li class="doctor-item">
+                        <div onclick="toggleList(this, 'inner')">
+                            د. محمد أحمد <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                        </div>
+                        <!-- ملفات PDF للدكتور -->
+                        <ul class="file-list">
+                            <li class="file-item">
+                                <a href="pdfs/math-lecture1.pdf" download>محاضرة 1</a> <i class="fa-solid fa-download"></i>
+                            </li>
+                            <li class="file-item">
+                                <a href="pdfs/math-lecture2.pdf" download>محاضرة 2</a> <i class="fa-solid fa-download"></i>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="doctor-item">
+                        <div onclick="toggleList(this, 'inner')">
+                            د. علي حسن <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                        </div>
+                        <!-- ملفات PDF للدكتور -->
+                        <ul class="file-list">
+                            <li class="file-item">
+                                <a href="pdfs/math-lecture3.pdf" download>محاضرة 3</a> <i class="fa-solid fa-download"></i>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- ----------- نهاية قائمة الدكاترة في مادة الرياضيات ----------- -->
+            </li>
+
+            <!-- ------------------------------------------------------| مادة الفيزياء | ------------------------------------------------------ -->
+            <li class="subject-item">
+                <div class="subject-link" onclick="toggleList(this, 'outer')">
+                    مادة الفيزياء <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                </div>
+
+                <!-- ----------- قائمة الدكاترة في مادة الفيزياء ----------- -->
+                <ul class="doctor-list">
+                    <li class="doctor-item">
+                        <div onclick="toggleList(this, 'inner')">
+                            د. سمية إبراهيم <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                        </div>
+                        <!-- ملفات PDF للدكتور -->
+                        <ul class="file-list">
+                            <li class="file-item">
+                                <a href="pdfs/physics-lecture1.pdf" download>محاضرة 1</a> <i class="fa-solid fa-download"></i>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- ----------- نهاية قائمة الدكاترة في مادة الفيزياء ----------- -->
+            </li>
+        </ul>
+        <!-- ------------------------------------------------------| نهاية قائمة المواد الدراسية |------------------------------------------------------ -->
+    </div>
+
+    <script>
+function toggleList(element, type) {
+    const currentList = element.nextElementSibling;
+    const currentIcon = element.querySelector('.arrow-icon');
+
+    if (type === 'outer') {
+        // غلق جميع القوائم الخارجية الأخرى إذا كانت مفتوحة
+        document.querySelectorAll('.doctor-list').forEach(list => {
+            if (list !== currentList) {
+                list.style.maxHeight = "0";
+                list.previousElementSibling.querySelector('.arrow-icon').classList.remove('arrow-open');
+            }
+        });
+    } else if (type === 'inner') {
+        // غلق جميع القوائم الداخلية الأخرى إذا كانت مفتوحة
+        document.querySelectorAll('.file-list').forEach(list => {
+            if (list !== currentList) {
+                list.style.maxHeight = "0";
+                list.previousElementSibling.querySelector('.arrow-icon').classList.remove('arrow-open');
+            }
+        });
+    }
+
+    // فتح أو غلق القائمة الحالية
+    if (currentList.style.maxHeight === "0px" || !currentList.style.maxHeight) {
+        currentList.style.maxHeight = currentList.scrollHeight + "px";
+        currentIcon.classList.add('arrow-open');
+
+        // توسيع القائمة الخارجية لاحتواء القائمة الداخلية المفتوحة
+        if (type === 'inner') {
+            let outerList = element.closest('.doctor-list'); // الحصول على القائمة الخارجية الأقرب
+            if (outerList) {
+                outerList.style.maxHeight = outerList.scrollHeight + currentList.scrollHeight + "px";
+            }
+        }
+    } else {
+        currentList.style.maxHeight = "0";
+        currentIcon.classList.remove('arrow-open');
+        
+        // تقليص القائمة الخارجية بعد غلق القائمة الداخلية
+        if (type === 'inner') {
+            let outerList = element.closest('.doctor-list');
+            if (outerList) {
+                outerList.style.maxHeight = outerList.scrollHeight - currentList.scrollHeight + "px";
+            }
+        }
+    }
+}
+
+    </script>
+</body>
+
+</html>
