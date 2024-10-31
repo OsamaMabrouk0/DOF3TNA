@@ -246,6 +246,13 @@ input[type="color"]:hover {
 }
 
 /* Subject link styles */
+
+.subject-item{
+    width: 80%;
+    max-width: 400px;
+    margin: auto;
+}
+
 .subject-link {
     font-size: 18px;
     font-weight: bold;
