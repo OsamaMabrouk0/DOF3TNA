@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="ar">
+
 <head>
+    <!---------------------------------------------------| إعدادات الصفحة والمكتبات |--------------------------------------------------->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تطبيق دفعتنا</title>
 
-    <!-- استيراد المكتبات -->
+    <!-- استيراد مكتبات خارجية لتحسين تصميم وأداء واجهة المستخدم -->
     <link rel="stylesheet" href="libs/sweetalert2.min.css">
     <link rel="stylesheet" href="libs/animate.min.css">
     <link rel="stylesheet" href="fonts/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="libs/sweetalert2/dist/sweetalert2.min.css">
-    <link rel="stylesheet" href="fonts/cairo/cairo.css">
     <link rel="stylesheet" href="styles.css">
+
+
 </head>
 
 <body>
+    <!---------------------------------------------------| شاشة التحميل |--------------------------------------------------->
 
-    <!-- شاشة التحميل -->
     <div id="loader" class="loader">
         <div class="spinner animate__animated animate__bounceIn">
             <i class="fa-solid fa-graduation-cap"></i>
@@ -24,112 +27,430 @@
         <p class="animate__animated animate__fadeIn animate__delay-1s" id="welcome-text">أهلاً بك في تطبيق دفعتنا!</p>
     </div>
 
-    <!-- الصفحة الرئيسية -->
+    <!---------------------------------------------------| الصفحة الرئيسية |--------------------------------------------------->
+
     <div id="home" class="page active animate__animated animate__fadeIn">
         <h1>مرحبا بكم في تطبيق دفعتنا <i class="fa-solid fa-graduation-cap"></i></h1>
-
-        <!-- شبكة الكروت -->
         <div class="grid-container">
-            <div class="card animate__animated animate__zoomIn" onclick="showLectures()">
+            <div class="card animate__animated animate__zoomIn" onclick="navigateToPage('lectures')">
                 <i class="fa-solid fa-file-pdf"></i>
                 <p>المحاضرات</p>
             </div>
-            <div class="card animate__animated animate__zoomIn" onclick="showPage('schedule')">
+            <div class="card animate__animated animate__zoomIn" onclick="navigateToPage('schedule')">
                 <i class="fas fa-calendar-alt"></i>
                 <p>الجدول</p>
             </div>
-            <div class="card animate__animated animate__zoomIn" onclick="showPage('videos')">
+            <div class="card animate__animated animate__zoomIn" onclick="navigateToPage('videos')">
                 <i class="fas fa-video"></i>
                 <p>فيديوهات الشرح</p>
             </div>
-            <div class="card animate__animated animate__zoomIn" onclick="showPage('links')">
+            <div class="card animate__animated animate__zoomIn" onclick="navigateToPage('links')">
                 <i class="fas fa-link"></i>
                 <p>روابط الجروبات</p>
             </div>
-            <div class="card animate__animated animate__zoomIn" onclick="showPage('notes')">
+            <div class="card animate__animated animate__zoomIn" onclick="navigateToPage('notes')">
                 <i class="fa-solid fa-pencil"></i>
                 <p>الملاحظات</p>
             </div>
-            <div class="card animate__animated animate__zoomIn" onclick="showPage('tasks')">
+            <div class="card animate__animated animate__zoomIn" onclick="navigateToPage('tasks')">
                 <i class="fas fa-tasks"></i>
                 <p>المهام</p>
             </div>
-            <div class="card animate__animated animate__zoomIn" onclick="showPage('settings')">
+            <div class="card animate__animated animate__zoomIn" onclick="navigateToPage('settings')">
                 <i class="fas fa-cog"></i>
                 <p>الإعدادات</p>
             </div>
         </div>
     </div>
 
-    <!-- قسم المحاضرات -->
-    <div id="lectures" class="page animate__animated animate__fadeIn" style="display:none;">
-        <div class="back-button" onclick="showPage('home')"><i class="fas fa-arrow-right"></i></div>
+    <!---------------------------------------------------| قسم المحاضرات |--------------------------------------------------->
+
+    <div id="lectures" class="page animate__animated animate__fadeIn">
+        <div class="back-button" onclick="navigateToPage('home')"><i class="fas fa-arrow-right"></i></div>
         <h2>المحاضرات</h2>
-        <iframe src="PDF.html" width="100%" height="600px" style="border:none;"></iframe>
+        <p>تجد هنا جميع الملفات بصيغة PDF المتعلقة بالمحاضرات.</p>
+        <ul class="subject-list">
+
+            <!-- محاسبة مالية -->
+            <li class="subject-item">
+                <div class="subject-link" onclick="toggleList(this, 'outer')">مادة المحاسبة المالية <i
+                        class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                <ul class="doctor-list">
+                    <li class="doctor-item">
+                        <div onclick="toggleList(this, 'inner')">د. اسم دكتور <i
+                                class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                        <ul class="file-list">
+                            <li class="file-item"><a href="pdfs/economics-lecture1-doc1.pdf" download>محاضرة 1</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                            <li class="file-item"><a href="pdfs/economics-lecture2-doc1.pdf" download>محاضرة 2</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                        </ul>
+                    </li>
+                    <li class="doctor-item">
+                        <div onclick="toggleList(this, 'inner')">د. اسم دكتور <i
+                                class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                        <ul class="file-list">
+                            <li class="file-item"><a href="pdfs/economics-lecture1-doc2.pdf" download>محاضرة 1</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                            <li class="file-item"><a href="pdfs/economics-lecture2-doc2.pdf" download>محاضرة 2</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                        </ul>
+                    </li>
+                    <li class="doctor-item">
+                        <div onclick="toggleList(this, 'inner')">د. اسم دكتور <i
+                                class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                        <ul class="file-list">
+                            <li class="file-item"><a href="pdfs/economics-lecture1-doc3.pdf" download>محاضرة 1</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                            <li class="file-item"><a href="pdfs/economics-lecture2-doc3.pdf" download>محاضرة 2</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                        </ul>
+                    </li>
+                    <li class="doctor-item">
+                        <div onclick="toggleList(this, 'inner')">د. اسم دكتور <i
+                                class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                        <ul class="file-list">
+                            <li class="file-item"><a href="pdfs/economics-lecture1-doc4.pdf" download>محاضرة 1</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                            <li class="file-item"><a href="pdfs/economics-lecture2-doc4.pdf" download>محاضرة 2</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- مادة لغة اجنبية -->
+            <li class="subject-item">
+                <div class="subject-link" onclick="toggleList(this, 'outer')">مادة لغة اجنبية <i
+                        class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                <ul class="doctor-list">
+                    <li class="doctor-item">
+                        <div onclick="toggleList(this, 'inner')">د. اسم دكتور <i
+                                class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                        <ul class="file-list">
+                            <li class="file-item"><a href="pdfs/economics-lecture1-doc1.pdf" download>محاضرة 1</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                            <li class="file-item"><a href="pdfs/economics-lecture2-doc1.pdf" download>محاضرة 2</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                        </ul>
+                    </li>
+                    <li class="doctor-item">
+                        <div onclick="toggleList(this, 'inner')">د. اسم دكتور <i
+                                class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                        <ul class="file-list">
+                            <li class="file-item"><a href="pdfs/economics-lecture1-doc2.pdf" download>محاضرة 1</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                            <li class="file-item"><a href="pdfs/economics-lecture2-doc2.pdf" download>محاضرة 2</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                        </ul>
+                    </li>
+                    <li class="doctor-item">
+                        <div onclick="toggleList(this, 'inner')">د. اسم دكتور <i
+                                class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                        <ul class="file-list">
+                            <li class="file-item"><a href="pdfs/economics-lecture1-doc3.pdf" download>محاضرة 1</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                            <li class="file-item"><a href="pdfs/economics-lecture2-doc3.pdf" download>محاضرة 2</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                        </ul>
+                    </li>
+                    <li class="doctor-item">
+                        <div onclick="toggleList(this, 'inner')">د. اسم دكتور <i
+                                class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                        <ul class="file-list">
+                            <li class="file-item"><a href="pdfs/economics-lecture1-doc4.pdf" download>محاضرة 1</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                            <li class="file-item"><a href="pdfs/economics-lecture2-doc4.pdf" download>محاضرة 2</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- مادة علوم سياسية -->
+            <li class="subject-item">
+                <div class="subject-link" onclick="toggleList(this, 'outer')">مادة علوم سياسية <i
+                        class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                <ul class="doctor-list">
+                    <li class="doctor-item">
+                        <div onclick="toggleList(this, 'inner')">د. اسم دكتور <i
+                                class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                        <ul class="file-list">
+                            <li class="file-item"><a href="pdfs/english-lecture1-doc1.pdf" download>محاضرة 1</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                            <li class="file-item"><a href="pdfs/english-lecture2-doc1.pdf" download>محاضرة 2</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                        </ul>
+                    </li>
+                    <li class="doctor-item">
+                        <div onclick="toggleList(this, 'inner')">د. اسم دكتور <i
+                                class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                        <ul class="file-list">
+                            <li class="file-item"><a href="pdfs/english-lecture1-doc2.pdf" download>محاضرة 1</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                            <li class="file-item"><a href="pdfs/english-lecture2-doc2.pdf" download>محاضرة 2</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                        </ul>
+                    </li>
+                    <li class="doctor-item">
+                        <div onclick="toggleList(this, 'inner')">د. اسم دكتور <i
+                                class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                        <ul class="file-list">
+                            <li class="file-item"><a href="pdfs/english-lecture1-doc3.pdf" download>محاضرة 1</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                            <li class="file-item"><a href="pdfs/english-lecture2-doc3.pdf" download>محاضرة 2</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                        </ul>
+                    </li>
+                    <li class="doctor-item">
+                        <div onclick="toggleList(this, 'inner')">د. اسم دكتور <i
+                                class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                        <ul class="file-list">
+                            <li class="file-item"><a href="pdfs/english-lecture1-doc4.pdf" download>محاضرة 1</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                            <li class="file-item"><a href="pdfs/english-lecture2-doc4.pdf" download>محاضرة 2</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- مادة الرياضة البحتة -->
+            <li class="subject-item">
+                <div class="subject-link" onclick="toggleList(this, 'outer')">مادة الرياضة البحتة <i
+                        class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                <ul class="doctor-list">
+                    <li class="doctor-item">
+                        <div onclick="toggleList(this, 'inner')">د. اسم دكتور <i
+                                class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                        <ul class="file-list">
+                            <li class="file-item"><a href="pdfs/pure-math-lecture1-doc1.pdf" download>محاضرة 1</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                            <li class="file-item"><a href="pdfs/pure-math-lecture2-doc1.pdf" download>محاضرة 2</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                        </ul>
+                    </li>
+                    <li class="doctor-item">
+                        <div onclick="toggleList(this, 'inner')">د. اسم دكتور <i
+                                class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                        <ul class="file-list">
+                            <li class="file-item"><a href="pdfs/pure-math-lecture1-doc2.pdf" download>محاضرة 1</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                            <li class="file-item"><a href="pdfs/pure-math-lecture2-doc2.pdf" download>محاضرة 2</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                        </ul>
+                    </li>
+                    <li class="doctor-item">
+                        <div onclick="toggleList(this, 'inner')">د. اسم دكتور <i
+                                class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                        <ul class="file-list">
+                            <li class="file-item"><a href="pdfs/pure-math-lecture1-doc3.pdf" download>محاضرة 1</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                            <li class="file-item"><a href="pdfs/pure-math-lecture2-doc3.pdf" download>محاضرة 2</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                        </ul>
+                    </li>
+                    <li class="doctor-item">
+                        <div onclick="toggleList(this, 'inner')">د. اسم دكتور <i
+                                class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                        <ul class="file-list">
+                            <li class="file-item"><a href="pdfs/pure-math-lecture1-doc4.pdf" download>محاضرة 1</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                            <li class="file-item"><a href="pdfs/pure-math-lecture2-doc4.pdf" download>محاضرة 2</a> <i
+                                    class="fa-solid fa-download"></i></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- مادة اقتصاد جزئي -->
+            <li class="subject-item">
+                <div class="subject-link" onclick="toggleList(this, 'outer')">مادة اقتصاد جزئي <i
+                        class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                <ul class="doctor-list">
+                    <li class="doctor-item">
+                        <div onclick="toggleList(this, 'inner')">د. اسم دكتور <i
+                                class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                        <ul class="file-list">
+                            <li class="file-item"><a href="pdfs/political-science-lecture1-doc1.pdf" download>محاضرة
+                                    1</a> <i class="fa-solid fa-download"></i></li>
+                            <li class="file-item"><a href="pdfs/political-science-lecture2-doc1.pdf" download>محاضرة
+                                    2</a> <i class="fa-solid fa-download"></i></li>
+                        </ul>
+                    </li>
+                    <li class="doctor-item">
+                        <div onclick="toggleList(this, 'inner')">د. اسم دكتور <i
+                                class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                        <ul class="file-list">
+                            <li class="file-item"><a href="pdfs/political-science-lecture1-doc2.pdf" download>محاضرة
+                                    1</a> <i class="fa-solid fa-download"></i></li>
+                            <li class="file-item"><a href="pdfs/political-science-lecture2-doc2.pdf" download>محاضرة
+                                    2</a> <i class="fa-solid fa-download"></i></li>
+                        </ul>
+                    </li>
+                    <li class="doctor-item">
+                        <div onclick="toggleList(this, 'inner')">د. اسم دكتور <i
+                                class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                        <ul class="file-list">
+                            <li class="file-item"><a href="pdfs/political-science-lecture1-doc3.pdf" download>محاضرة
+                                    1</a> <i class="fa-solid fa-download"></i></li>
+                            <li class="file-item"><a href="pdfs/political-science-lecture2-doc3.pdf" download>محاضرة
+                                    2</a> <i class="fa-solid fa-download"></i></li>
+                        </ul>
+                    </li>
+                    <li class="doctor-item">
+                        <div onclick="toggleList(this, 'inner')">د. اسم دكتور <i
+                                class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                        <ul class="file-list">
+                            <li class="file-item"><a href="pdfs/political-science-lecture1-doc4.pdf" download>محاضرة
+                                    1</a> <i class="fa-solid fa-download"></i></li>
+                            <li class="file-item"><a href="pdfs/political-science-lecture2-doc4.pdf" download>محاضرة
+                                    2</a> <i class="fa-solid fa-download"></i></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+
+                        <!-- مادة مبادئ الادارة -->
+                        <li class="subject-item">
+                            <div class="subject-link" onclick="toggleList(this, 'outer')">مادة مبادئ الادارة <i
+                                    class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                            <ul class="doctor-list">
+                                <li class="doctor-item">
+                                    <div onclick="toggleList(this, 'inner')">د. اسم دكتور <i
+                                            class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                                    <ul class="file-list">
+                                        <li class="file-item"><a href="pdfs/economics-lecture1-doc1.pdf" download>محاضرة 1</a> <i
+                                                class="fa-solid fa-download"></i></li>
+                                        <li class="file-item"><a href="pdfs/economics-lecture2-doc1.pdf" download>محاضرة 2</a> <i
+                                                class="fa-solid fa-download"></i></li>
+                                    </ul>
+                                </li>
+                                <li class="doctor-item">
+                                    <div onclick="toggleList(this, 'inner')">د. اسم دكتور <i
+                                            class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                                    <ul class="file-list">
+                                        <li class="file-item"><a href="pdfs/economics-lecture1-doc2.pdf" download>محاضرة 1</a> <i
+                                                class="fa-solid fa-download"></i></li>
+                                        <li class="file-item"><a href="pdfs/economics-lecture2-doc2.pdf" download>محاضرة 2</a> <i
+                                                class="fa-solid fa-download"></i></li>
+                                    </ul>
+                                </li>
+                                <li class="doctor-item">
+                                    <div onclick="toggleList(this, 'inner')">د. اسم دكتور <i
+                                            class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                                    <ul class="file-list">
+                                        <li class="file-item"><a href="pdfs/economics-lecture1-doc3.pdf" download>محاضرة 1</a> <i
+                                                class="fa-solid fa-download"></i></li>
+                                        <li class="file-item"><a href="pdfs/economics-lecture2-doc3.pdf" download>محاضرة 2</a> <i
+                                                class="fa-solid fa-download"></i></li>
+                                    </ul>
+                                </li>
+                                <li class="doctor-item">
+                                    <div onclick="toggleList(this, 'inner')">د. اسم دكتور <i
+                                            class="fa-solid fa-chevron-down arrow-icon"></i></div>
+                                    <ul class="file-list">
+                                        <li class="file-item"><a href="pdfs/economics-lecture1-doc4.pdf" download>محاضرة 1</a> <i
+                                                class="fa-solid fa-download"></i></li>
+                                        <li class="file-item"><a href="pdfs/economics-lecture2-doc4.pdf" download>محاضرة 2</a> <i
+                                                class="fa-solid fa-download"></i></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+            
+
+        </ul>
     </div>
 
-    <!-- صفحة الجدول الدراسي -->
-    <div id="schedule" class="page animate__animated animate__fadeIn" style="display:none;">
-        <div class="back-button" onclick="showPage('home')"><i class="fas fa-arrow-right"></i></div>
+
+    <!---------------------------------------------------| قسم الجدول الدراسي |--------------------------------------------------->
+    <div id="schedule" class="page animate__animated animate__fadeIn">
+        <div class="back-button" onclick="navigateToPage('home')"><i class="fas fa-arrow-right"></i></div>
         <h2>الجدول الدراسي</h2>
-        <p>هذه الصفحة تمكنك من تنظيم جدولك الأسبوعي بفعالية.</p>
-        <!-- هنا يمكنك إضافة المحتوى لاحقًا -->
+        <p>هنا يمكنك عرض وتنظيم جدولك الأسبوعي.</p>
     </div>
 
-    <!-- قسم فيديوهات الشرح -->
-    <div id="videos" class="page animate__animated animate__fadeIn" style="display:none;">
-        <div class="back-button" onclick="showPage('home')"><i class="fas fa-arrow-right"></i></div>
+    <!---------------------------------------------------| قسم فيديوهات الشرح |--------------------------------------------------->
+
+    <div id="videos" class="page animate__animated animate__fadeIn">
+        <div class="back-button" onclick="navigateToPage('home')"><i class="fas fa-arrow-right"></i></div>
         <h2>فيديوهات الشرح</h2>
-        <p>يمكنك إضافة فيديوهات الشرح هنا.</p>
-        <!-- هنا يمكنك إضافة المحتوى لاحقًا -->
+        <p>هنا يمكنك إضافة روابط لفيديوهات الشرح.</p>
     </div>
 
-    <!-- قسم روابط الجروبات -->
-    <div id="links" class="page animate__animated animate__fadeIn" style="display:none;">
-        <div class="back-button" onclick="showPage('home')"><i class="fas fa-arrow-right"></i></div>
+    <!---------------------------------------------------| قسم روابط الجروبات |--------------------------------------------------->
+
+    <div id="links" class="page animate__animated animate__fadeIn">
+        <div class="back-button" onclick="navigateToPage('home')"><i class="fas fa-arrow-right"></i></div>
         <h2>روابط الجروبات</h2>
-        <p>قم بإضافة روابط الجروبات هنا.</p>
-        <!-- هنا يمكنك إضافة المحتوى لاحقًا -->
+        <p>هنا يمكنك إضافة روابط الجروبات الخاصة بالتطبيق.</p>
     </div>
 
-    <!-- قسم الملاحظات -->
-    <div id="notes" class="page animate__animated animate__fadeIn" style="display:none;">
-        <div class="back-button" onclick="showPage('home')"><i class="fas fa-arrow-right"></i></div>
+    <!---------------------------------------------------| قسم الملاحظات |--------------------------------------------------->
+
+    <div id="notes" class="page animate__animated animate__fadeIn">
+        <div class="back-button" onclick="navigateToPage('home')"><i class="fas fa-arrow-right"></i></div>
         <h2>الملاحظات</h2>
-        <p>قم بإضافة الملاحظات هنا.</p>
-
+        <p>هنا يمكنك إضافة الملاحظات الخاصة بك.</p>
     </div>
 
-    <!-- قسم المهام -->
-    <div id="tasks" class="page animate__animated animate__fadeIn" style="display:none;">
-        <div class="back-button" onclick="showPage('home')"><i class="fas fa-arrow-right"></i></div>
+    <!---------------------------------------------------| قسم المهام |--------------------------------------------------->
+
+    <div id="tasks" class="page animate__animated animate__fadeIn">
+        <div class="back-button" onclick="navigateToPage('home')"><i class="fas fa-arrow-right"></i></div>
         <h2>المهام</h2>
-        <p>قم بإضافة المهام هنا.</p>
-
+        <p>هنا يمكنك تنظيم مهامك اليومية.</p>
     </div>
 
-    <!-- قسم الإعدادات -->
-    <div id="settings" class="page animate__animated animate__fadeIn" style="display:none;">
-        <div class="back-button" onclick="showPage('home')"><i class="fas fa-arrow-right"></i></div>
+    <!---------------------------------------------------| قسم الإعدادات |--------------------------------------------------->
+
+    <div id="settings" class="page animate__animated animate__fadeIn">
+        <div class="back-button" onclick="navigateToPage('home')"><i class="fas fa-arrow-right"></i></div>
         <h2>الإعدادات</h2>
-        <p>قم بتعديل الإعدادات هنا.</p>
+        <div class="settings-container">
+
+            <!-- تبديل الوضع -->
+            <div class="setting-item">
+                <label><i class="fas fa-adjust"></i> تبديل الوضع</label>
+                <button id="toggleThemeButton" onclick="toggleTheme()">تبديل الوضع إلى الفاتح</button>
+            </div>
+
+            <!-- الألوان المقترحة -->
+            <div class="setting-item">
+                <label><i class="fas fa-palette"></i> الألوان المقترحة:</label>
+                <div class="color-suggestions"></div>
+            </div>
+
+            <!-- اختيار لون مخصص -->
+            <div class="setting-item">
+                <label><i class="fas fa-palette"></i> اختر لون مخصص:</label>
+                <input type="color" id="accentColorPicker" onchange="changeAccentColor(this.value)">
+            </div>
+
+            <!-- زر إعادة ضبط الإعدادات -->
+            <div class="setting-item">
+                <label><i class="fas fa-undo"></i> إعادة ضبط الإعدادات</label>
+                <button onclick="resetSettings()" class="reset">إعادة الضبط</button>
+            </div>
+        </div>
     </div>
 
-    <!-- شريط التنقل السفلي -->
+    <!---------------------------------------------------| شريط التنقل السفلي |--------------------------------------------------->
+
     <div class="bottom-navigation">
-        <a href="#" onclick="showPage('home')"><i class="fas fa-home"></i></a>
-        <a href="#" onclick="showLectures()"><i class="fa-solid fa-file-pdf"></i></a>
-        <a href="#" onclick="showPage('videos')"><i class="fas fa-video"></i></a>
-        <a href="#" onclick="showPage('links')"><i class="fas fa-link"></i></a>
-        <a href="#" onclick="showPage('settings')"><i class="fas fa-cog"></i></a>
+        <a href="#" onclick="navigateToPage('home')"><i class="fas fa-home"></i></a>
+        <a href="#" onclick="navigateToPage('lectures')"><i class="fa-solid fa-file-pdf"></i></a>
+        <a href="#" onclick="navigateToPage('videos')"><i class="fas fa-video"></i></a>
+        <a href="#" onclick="navigateToPage('links')"><i class="fas fa-link"></i></a>
+        <a href="#" onclick="navigateToPage('settings')"><i class="fas fa-cog"></i></a>
     </div>
 
-    <!-- تحميل ملف السكربت -->
+    <!---------------------------------------------------| تحميل السكربتات |--------------------------------------------------->
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="libs/sweetalert2/dist/sweetalert2.min.js"></script>
-    <script src="node_modules/sortablejs/Sortable.min.js"></script>
-
     <script src="script.js"></script>
-
 </body>
+
 </html>

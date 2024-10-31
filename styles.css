@@ -1,36 +1,104 @@
 :root {
-    /******************************************************| إعداد المتغيرات العامة ******************************************************/
     --background-color: #0d1117;
     --card-color: #161b22;
     --text-color: #c9d1d9;
-    --accent-color: #58a6ff;
+    --accent-color: #58a6ff; /* اللون الأساسي المبدئي */
     --hover-color: #21262d;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --bottom-nav-shadow: rgba(0, 0, 0, 0.5);
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --box-shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.5);
     --font-family: 'Cairo', sans-serif;
 }
 
-/******************************************************| تنسيقات عامة للجسم والصفحات ******************************************************/
-*{
+body.light-theme {
+    --background-color: #fdfdfd;
+    --card-color: #ffffff;
+    --text-color: #333333;
+    --hover-color: #777777;
+    --shadow-color: rgba(200, 200, 200, 0.5);
+    --bottom-nav-shadow: rgba(0, 0, 0, 0.1);
+    --box-shadow: 0 4px 12px rgba(200, 200, 200, 0.5);
+    --box-shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.7);
+}
+
+* {
     font-family: var(--font-family);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 body {
     background-color: var(--background-color);
     color: var(--text-color);
-    font-family: var(--font-family);
     margin: 0;
     text-align: center;
 }
 
+
+
+/* Page styles */
 .page {
-    display: none;
+    background-color: var(--background-color);
+    color: var(--text-color);
     padding: 20px;
+    text-align: center;
 }
 
-.active {
-    display: block;
+.page { display: none; }
+.page.active { display: block; }
+
+/* Headings */
+h1, h2 {
+    color: var(--accent-color);
+    margin-bottom: 20px;
 }
 
-/******************************************************| تنسيق شاشة التحميل ******************************************************/
+h1 {
+    font-size: 2.5em;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+/* Paragraphs */
+p {
+    font-size: 1em;
+    margin-bottom: 20px;
+}
+
+/* Button styles */
+button {
+    font-size: 1em;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: var(--accent-color);
+    color: #ffffff;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--hover-color);
+    transform: scale(1.05);
+}
+
+/* Input styles */
+input[type="color"] {
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+input[type="color"]:hover {
+    transform: scale(1.1);
+}
+
+/* Loader styles */
 .loader {
     position: fixed;
     top: 0;
@@ -38,7 +106,7 @@ body {
     right: 0;
     bottom: 0;
     background-color: rgba(13, 17, 23, 0.8);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
     color: var(--accent-color);
     display: flex;
     align-items: center;
@@ -46,7 +114,6 @@ body {
     flex-direction: column;
     z-index: 10;
     opacity: 1;
-    transition: opacity 1s ease;
 }
 
 .loader.hidden {
@@ -58,7 +125,7 @@ body {
     font-size: 3em;
 }
 
-/******************************************************| تنسيق الشبكة الرئيسية ******************************************************/
+/* Grid and card styles */
 .grid-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -67,20 +134,20 @@ body {
     margin: auto;
 }
 
-/******************************************************| تنسيق الكروت ******************************************************/
 .card {
     background-color: var(--card-color);
     color: var(--text-color);
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: var(--box-shadow);
     text-decoration: none;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    transform: scale(1.05);
+    box-shadow: var(--box-shadow-hover);
     background-color: var(--hover-color);
 }
 
@@ -89,43 +156,56 @@ body {
     color: var(--accent-color);
 }
 
-/******************************************************| تنسيق شريط التنقل السفلي ******************************************************/
+/* Bottom navigation styles */
 .bottom-navigation {
     position: fixed;
     bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
+    max-width: 600px;
     background-color: var(--card-color);
     display: flex;
     justify-content: space-around;
-    padding: 10px 0;
+    padding: 15px 0;
+    box-shadow: 0 -2px 10px var(--bottom-nav-shadow);
+    border-radius: 10px;
 }
 
 .bottom-navigation a {
     color: var(--text-color);
     font-size: 1.5em;
-    transition: color 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
 }
 
 .bottom-navigation a:hover {
     color: var(--accent-color);
+    transform: scale(1.1);
+}
+.bottom-navigation { display: none; }
+.bottom-navigation.active { display: flex; }
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    .bottom-navigation a {
+        font-size: 1.5em;
+        flex-direction: row;
+        gap: 5px;
+    }
 }
 
-/******************************************************| زر العودة ******************************************************/
-.back-button {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 1.5em;
-    color: var(--accent-color);
-    cursor: pointer;
-    transition: color 0.3s ease;
+@media (max-width: 767px) {
+    .bottom-navigation {
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
 }
 
-.back-button:hover {
-    color: var(--text-color);
-}
-
-/******************************************************| تحسينات الوضع على الهاتف ******************************************************/
 @media (max-width: 480px) {
     .grid-container {
         grid-template-columns: repeat(2, 1fr);
@@ -133,21 +213,7 @@ body {
     }
 }
 
-/******************************************************| تنسيقات صفحة PDF ******************************************************/
-.page {
-    padding: 20px;
-    text-align: center;
-    color: var(--text-color);
-    background-color: var(--background-color);
-    font-family: 'Cairo', sans-serif;
-}
-
-h1 {
-    color: var(--accent-color);
-    font-family: 'Tajawal', sans-serif;
-    margin-bottom: 20px;
-}
-
+/* PDF page styles */
 .pdf-list {
     list-style: none;
     padding: 0;
@@ -161,7 +227,6 @@ h1 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     width: 80%;
     max-width: 500px;
-    transition: background-color 0.2s;
 }
 
 .pdf-list li:hover {
@@ -180,25 +245,25 @@ h1 {
     color: var(--accent-color);
 }
 
+/* Subject link styles */
 .subject-link {
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
     color: #ffffff;
-    background-color: #007BFF;
+    background-color: var(--accent-color);
     padding: 5px 10px;
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: background-color 0.3s ease;
 }
 
 .subject-link:hover {
-    background-color: #0056b3;
+    background-color: var(--hover-color);
 }
 
-/* قائمة الدكاترة */
+/* Doctor and file list styles */
 .doctor-list, .file-list {
     list-style: none;
     margin-top: 10px;
@@ -208,57 +273,128 @@ h1 {
     transition: max-height 0.4s ease-out;
 }
 
-/* تنسيق عناصر الدكاترة */
 .doctor-item, .file-item {
     font-size: 16px;
-    color: #333;
-    background-color: #f1f1f1;
+    color: var(--text-color);
+    background-color: var(--card-color);
+    box-shadow: var(--box-shadow);
     padding: 5px 10px;
-    margin: 4px 0;
+    margin: 4px 4px;
     border-radius: 6px;
-    transition: background-color 0.3s ease;
     cursor: pointer;
+    outline: 1px solid var(--accent-color)
+
 }
 
 .doctor-item:hover, .file-item:hover {
-    background-color: #e0e0e0;
+    background-color: var(--hover-color);
 }
 
-/* تنسيق السهم */
+/* Arrow icon styles */
 .arrow-icon {
     transition: transform 0.3s ease;
 }
 
-/* تغيير اتجاه السهم عند فتح القائمة */
 .arrow-open {
     transform: rotate(90deg);
 }
 
-
-.file-list {
-    list-style: none; /* إزالة النقاط من القائمة */
-    padding: 0; /* إزالة المسافة الداخلية */
-}
-
-.file-item {
-    margin: 10px 0; /* إضافة مسافة بين العناصر */
-}
-
 .file-item a {
-    text-decoration: none; /* إزالة الخط من تحت الرابط */
-    color: #007bff; /* لون النص */
-    font-weight: bold; /* جعل النص سميك */
-    padding: 5px 10px; /* إضافة مسافة داخلية */
-    border-radius: 5px; /* جعل الزوايا مدورة */
-    transition: background-color 0.3s, color 0.3s; /* تأثير عند التمرير */
+    text-decoration: none;
+    color: var(--accent-color);
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 .file-item a:hover {
-    background-color: #f0f0f0; /* لون خلفية عند التمرير */
-    color: #0056b3; /* لون النص عند التمرير */
+    background-color: var(--hover-color);
+    color: var(--text-color);
 }
 
 .file-item i {
-    margin-left: 5px; /* إضافة مسافة بين النص والأيقونة */
-    color: #555; /* لون الأيقونة */
+    margin-left: 5px;
+    color: var(--text-color);
+}
+
+/* Color picker styles */
+.color-picker-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.color-suggestions {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.color-option {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #fff;
+    transition: transform 0.2s ease;
+}
+
+.color-option:hover {
+    transform: scale(1.2);
+}
+
+/* Settings container styles */
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+}
+
+.setting-item {
+    background-color: var(--card-color);
+    color: var(--text-color);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.setting-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 12px var(--shadow-color);
+}
+
+.settings-container button {
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* إضافة انتقال للون الخلفية والتكبير */
+}
+
+.settings-container button:hover {
+    background-color: var(--accent-color); /* تغيير اللون إلى لون hover */
+    transform: scale(1.05); /* تكبير بسيط للزر عند التمرير */
+}
+
+/* Back button styles */
+.back-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5em;
+    color: var(--accent-color);
+    cursor: pointer;
+}
+
+.back-button:hover {
+    color: var(--text-color);
 }
