@@ -1,10 +1,10 @@
 function showUpdateNotification(updateUrl) {
   Swal.fire({
     title: "تحديث جديد 🎉",
-    text: "تم تغيير رابط الموقع. اضغط على 'تحديث الآن' للانتقال إلى الرابط الجديد.",
+    text: "تم تغيير رابط الموقع. اضغط على 'انتقل الآن' للانتقال إلى الرابط الجديد.",
     icon: "info",
     showCancelButton: true,
-    confirmButtonText: "تحديث الآن",
+    confirmButtonText: "انتقل الآن",
     cancelButtonText: "لاحقًا",
     customClass: {
       popup: "simple-swal-popup",
