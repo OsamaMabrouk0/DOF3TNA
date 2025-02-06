@@ -34,7 +34,7 @@ function fetchUpdateStatus(apiUrl) {
 
 // تحديد الرابط مع منع التخزين المؤقت
 const apiEndpoint =
-  "https://osamamabrouk0.github.io/update-api/update-status.json?timestamp=" +
+  "https://osamamabrouk0.github.io/update-api/update-status-web.json?timestamp=" +
   new Date().getTime();
 
 // استدعاء الدالة لجلب حالة التحديث
